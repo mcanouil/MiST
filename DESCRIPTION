@@ -6,7 +6,10 @@ Date: 2019-11-29
 Authors@R: c(
     person(given = "Jianping", family = "Sun", role = c("aut", "cre"), email = "sun@fhcrc.org"),
     person(given = "Yingye", family = "Zheng", role = "aut"),
-    person(given = "Li", family = "Hsu", role = "aut")
+    person(given = "Li", family = "Hsu", role = "aut"),
+    person(given = "Mickaël", family = "Canouil", role = c("ctb"), email = "mickael.canouil@cnrs.fr", 
+      comment = c(ORCID = "0000-0002-3396-4549")
+    )
   )
 Depends: CompQuadForm
 Description: Test for association between a set of SNPS/genes and
