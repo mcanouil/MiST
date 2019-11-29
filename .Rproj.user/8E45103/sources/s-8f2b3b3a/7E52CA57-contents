@@ -1,8 +1,0 @@
-git init
-git add --all
-git commit -am 'MiST v1.0 from CRAN'
-git config --local core.sharedRepository 0755
-# git push --set-upstream git@github.com:mcanouil/$project_name.git master
-curl -u "mcanouil" https://api.github.com/user/repos -d "{\"name\":\"$project_name\"}"
-git remote add origin  https://github.com/mcanouil/$project_name.git
-git push -u origin master

@@ -1,2 +1,14 @@
-^.*\.Rproj$
+^\.git$
+^\.github$
+^\.gitignore$
 ^\.Rproj\.user$
+^\.travis\.yml$
+^_pkgdown\.yml$
+^appveyor\.yml$
+^codecov\.yml$
+^cran-comments\.md$
+^.*\.Rproj$
+^README\.Rmd$
+^revdep$
+^CRAN-RELEASE$
+^.checks.R$
