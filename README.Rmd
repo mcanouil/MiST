@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 # Mixed effects Score Test
 
 <!-- badges: start -->
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GitHub tag](https://img.shields.io/github/tag/mcanouil/MiST.svg?label=latest tag)](https://github.com/mcanouil/MiST)
 [![Travis-CI Build Status](https://travis-ci.org/mcanouil/MiST.svg?branch=master)](https://travis-ci.org/mcanouil/MiST)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mcanouil/MiST?branch=master&svg=true)](https://ci.appveyor.com/project/mcanouil/MiST)
