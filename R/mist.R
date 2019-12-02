@@ -49,6 +49,7 @@
 #'
 #' if (interactive()) {
 #'
+#' set.seed(20191202)
 #' sample_size <- 100
 #' data <- data.frame(
 #'   y_continuous = c(rnorm(sample_size / 2, 10, 2), rnorm(sample_size / 2, 10, 2)),
@@ -201,7 +202,7 @@ mist_print <- tidy_mist <- function(x) {
 #' @export
 print.mist <- function(x, ...) {
   out <- tidy_mist(x)
-  out$estimate[, -1] <- signif(out$estimate[, -1], digits = 3)
+  out$estimate[, -1] <- round(out$estimate[, -1], digits = 3)
 
   cat(
     "",
@@ -221,19 +222,19 @@ print.mist <- function(x, ...) {
     "\n\n",
     "  + Overall effect: ",
     "\n",
-    "    * P-value = ", signif(out$statistic[, "p.value.overall"], digits = 3),
+    "    * P-value = ", round(out$statistic[, "p.value.overall"], digits = 3),
     "\n",
     "  + PI (mean effect):  ",
     "\n",
-    "    * Score =  ", signif(out$statistic[, "S.pi"], digits = 3),
+    "    * Score = ", round(out$statistic[, "S.pi"], digits = 3),
     "\n",
-    "    * P-value = ", signif(out$statistic[, "p.value.S.pi"], digits = 3),
+    "    * P-value = ", round(out$statistic[, "p.value.S.pi"], digits = 3),
     "\n",
     "  + TAU (heterogeneous effect):  ",
     "\n",
-    "    * Score =  ", signif(out$statistic[, "S.tau"], digits = 3),
+    "    * Score = ", round(out$statistic[, "S.tau"], digits = 3),
     "\n",
-    "    * P-value = ", signif(out$statistic[, "p.value.S.tau"], digits = 3),
+    "    * P-value = ", round(out$statistic[, "p.value.S.tau"], digits = 3),
     "\n\n",
     sep = ""
   )
