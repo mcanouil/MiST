@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Mixed effects Score Test
+# *Mi*xed effects *S*core *T*est
 
 <!-- badges: start -->
 
