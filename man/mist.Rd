@@ -54,6 +54,7 @@ including variant characteristic information and using score statistics.
 
 if (interactive()) {
 
+set.seed(20191202)
 sample_size <- 100
 data <- data.frame(
   y_continuous = c(rnorm(sample_size / 2, 10, 2), rnorm(sample_size / 2, 10, 2)),
