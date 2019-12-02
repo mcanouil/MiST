@@ -8,12 +8,11 @@
 #'  * `G` a numeric matrix of genotypes
 #'  * `Z` a numeric matrix with information on variants, *i.e.*, group, maf and effect.
 #'
+# {
 # set.seed(20191203)
 #
 # sample_size <- 100
 # n_variant <- 10
-#
-# variant_effects <- setNames(rnorm(n_variant, sd = 2), paste0("g_variant", 1:n_variant))
 #
 # G <- replicate(
 #   n = n_variant,
@@ -32,7 +31,7 @@
 # Z <- cbind(
 #   Z,
 #   maf = colSums(as.matrix(G[, paste0("g_variant", 1:n_variant), drop = FALSE])) / (nrow(G) * 2),
-#   effect = variant_effects
+#   effect = setNames(rnorm(n_variant, sd = 2), paste0("g_variant", 1:n_variant))
 # )
 #
 # data <- data.frame(
@@ -44,22 +43,22 @@
 # )
 #
 # data[["y_tau"]] <- as.vector(data[["y_raw"]] +
-#   as.matrix(G[, paste0("g_variant", 1:n_variant)]) %*% variant_effects)
+#   as.matrix(G[, paste0("g_variant", 1:n_variant)]) %*% Z[, "effect"])
 #
 # data[["y_pi"]] <- data[["y_raw"]] + data[["y_binary"]] * 3
 #
 # data[["y_taupi"]] <- as.vector(
 #   data[["y_raw"]] +
 #   data[["y_binary"]] * 3 +
-#   as.matrix(G[, paste0("g_variant", 1:n_variant)]) %*% variant_effects
+#   as.matrix(G[, paste0("g_variant", 1:n_variant)]) %*% Z[, "effect"]
 # )
 #
 # mist_data <- list(
-#   phenotypes = data,
+#   phenotypes = as.matrix(data),
 #   genotypes = G,
 #   variants_info = Z
 # )
 #
-#
 # usethis::use_data(mist_data, overwrite = TRUE)
+# }
 "mist_data"
