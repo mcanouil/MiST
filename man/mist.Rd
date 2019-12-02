@@ -52,6 +52,8 @@ including variant characteristic information and using score statistics.
 }
 \examples{
 
+if (interactive()) {
+
 sample_size <- 100
 data <- data.frame(
   y_continuous = c(rnorm(sample_size / 2, 10, 2), rnorm(sample_size / 2, 10, 2)),
@@ -144,5 +146,7 @@ mist(
   weight.beta = c(1,25),
   maf = maf
 )
+
+}
 
 }
