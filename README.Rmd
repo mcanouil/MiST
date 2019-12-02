@@ -27,6 +27,12 @@ knitr::opts_chunk$set(
 <!--[![Coverage Status (coveralls)](https://coveralls.io/repos/github/mcanouil/MiST/badge.svg?branch=master)](https://coveralls.io/github/mcanouil/MiST?branch=master)-->
 <!-- badges: end -->
 
+Test for association between a set of SNPS/genes and continuous or binary outcomes by including variant characteristic information and using (weighted) score statistics.
+
+**Note:**
+
+* From: https://cran.r-project.org/package=MiST (v1.0)
+* Reference: https://doi.org/10.1002/gepi.21717
 
 ## Installation
 
