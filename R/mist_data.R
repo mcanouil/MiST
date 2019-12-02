@@ -9,7 +9,7 @@
 #'  * `Z` a numeric matrix with information on variants, *i.e.*, group, maf and effect.
 #'
 # {
-# set.seed(20191203)
+# set.seed(192082)
 #
 # sample_size <- 100
 # n_variant <- 10
