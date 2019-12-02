@@ -47,6 +47,8 @@
 #'
 #' @examples
 #'
+#' if (interactive()) {
+#'
 #' sample_size <- 100
 #' data <- data.frame(
 #'   y_continuous = c(rnorm(sample_size / 2, 10, 2), rnorm(sample_size / 2, 10, 2)),
@@ -139,6 +141,8 @@
 #'   weight.beta = c(1,25),
 #'   maf = maf
 #' )
+#'
+#' }
 #'
 mist <- function(
   y, X, G, Z,
