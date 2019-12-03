@@ -8,6 +8,7 @@
 * New S3 `print` method for `mist`object.
 * New `mist_data` (simulated dataset).
 * New vignette `MiST` with a comprehensive list of examples using `mist_data`
+* Add unit testing.
 
 # MiST 1.0.0
 
