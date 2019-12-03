@@ -56,21 +56,25 @@ attach(mist_data)
 ### Continuous Outcome
 
 ```{r}
-mist(
+res <- mist(
   y = phenotypes[, "y_taupi"],
   X = phenotypes[, paste0("x_cov", 0:2)],
   G = genotypes,
   Z = variants_info[, 1, drop = FALSE]
 )
+str(res)
+print(res)
 ```
 
 ### Binary Outcome
 
 ```{r}
-mist(
+res <- mist(
   y = phenotypes[, "y_binary"],
   X = phenotypes[, paste0("x_cov", 0:2)],
   G = genotypes,
   Z = variants_info[, 1, drop = FALSE]
 )
+str(res)
+print(res)
 ```
