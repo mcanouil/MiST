@@ -87,11 +87,11 @@ mist <- function(
     EXPR = model,
     "continuous" = {
       message(paste('[MiST] Linear regression is ongoing ...'))
-      tidy_mist(mist_linear(y, X, G, Z, method, weight.beta, maf))
+      tidy_mist(suppressMessages(mist_linear(y, X, G, Z, method, weight.beta, maf)))
     },
     "binary" = {
       message('[MiST] Logistic regression is ongoing ...')
-      tidy_mist(mist_logit(y, X, G, Z, method, weight.beta, maf))
+      tidy_mist(suppressMessages(mist_logit(y, X, G, Z, method, weight.beta, maf)))
     }
   )
   class(output) <- "mist"
@@ -243,12 +243,12 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
 
   if (method == "davies") {
     p.value.S.tau <- tryCatch(
-      expr = suppressMessages(CompQuadForm::davies(S.tau, lambda)$Qq),
+      expr = CompQuadForm::davies(S.tau, lambda)$Qq,
       error = function(e) NA)
   }
   if (method == "liu") {
     p.value.S.tau <- tryCatch(
-      expr = suppressMessages(CompQuadForm::liu(S.tau, lambda)),
+      expr = CompQuadForm::liu(S.tau, lambda),
       error = function(e) NA
     )
   }
@@ -344,12 +344,12 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
 
   if (method == "davies") {
     p.value.S.tau <- tryCatch(
-      expr = suppressMessages(CompQuadForm::davies(S.tau, lambda)$Qq),
+      expr = CompQuadForm::davies(S.tau, lambda)$Qq,
       error = function(e) NA)
   }
   if (method == "liu") {
     p.value.S.tau <- tryCatch(
-      expr = suppressMessages(CompQuadForm::liu(S.tau, lambda)),
+      expr = CompQuadForm::liu(S.tau, lambda),
       error = function(e) NA
     )
   }
