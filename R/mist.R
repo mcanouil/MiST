@@ -242,10 +242,15 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
   lambda <- eigen.value
 
   if (method == "davies") {
-    p.value.S.tau <- tryCatch(CompQuadForm::davies(S.tau, lambda)$Qq, error = function(e) NA)
+    p.value.S.tau <- tryCatch(
+      expr = suppressMessages(CompQuadForm::davies(S.tau, lambda)$Qq),
+      error = function(e) NA)
   }
   if (method == "liu") {
-    p.value.S.tau <- tryCatch(CompQuadForm::liu(S.tau, lambda), error = function(e) NA)
+    p.value.S.tau <- tryCatch(
+      expr = suppressMessages(CompQuadForm::liu(S.tau, lambda)),
+      error = function(e) NA
+    )
   }
 
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
@@ -338,10 +343,15 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   lambda <- eigen.value
 
   if (method == "davies") {
-    p.value.S.tau <- tryCatch(CompQuadForm::davies(S.tau, lambda)$Qq, error = function(e) NA)
+    p.value.S.tau <- tryCatch(
+      expr = suppressMessages(CompQuadForm::davies(S.tau, lambda)$Qq),
+      error = function(e) NA)
   }
   if (method == "liu") {
-    p.value.S.tau <- tryCatch(CompQuadForm::liu(S.tau, lambda), error = function(e) NA)
+    p.value.S.tau <- tryCatch(
+      expr = suppressMessages(CompQuadForm::liu(S.tau, lambda)),
+      error = function(e) NA
+    )
   }
 
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
