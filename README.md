@@ -43,3 +43,75 @@ install.packages("MiST")
 # install.packages("remotes")
 remotes::install_github("mcanouil/MiST")
 ```
+
+## MiST in Action
+
+``` r
+library(MiST)
+data(mist_data)
+attach(mist_data)
+```
+
+### Continuous Outcome
+
+``` r
+mist(
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
+)
+#> [MiST] "y" seems to be "continuous", model is set to "continuous"!
+#> [MiST] Linear regression is ongoing ...
+#> 
+#> MiST: Mixed effects Score Test
+#> ------------------------------
+#> 
+#> - Estimate:
+#> 
+#>   SubClusters Pi_hat CI_2.5 CI_97.5
+#> 1    cluster1  0.248 -0.389   0.885
+#> 
+#> - Statistics:
+#> 
+#>   + Overall effect: 
+#>     * P-value = 0.031
+#>   + PI (mean effect):  
+#>     * Score = 0.601
+#>     * P-value = 0.438
+#>   + TAU (heterogeneous effect):  
+#>     * Score = 1006.125
+#>     * P-value = 0.011
+```
+
+### Binary Outcome
+
+``` r
+mist(
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
+)
+#> [MiST] "y" seems to be "binary", model is set to "binary"!
+#> [MiST] Logistic regression is ongoing ...
+#> 
+#> MiST: Mixed effects Score Test
+#> ------------------------------
+#> 
+#> - Estimate:
+#> 
+#>   SubClusters Pi_hat CI_2.5 CI_97.5    OR
+#> 1    cluster1  1.274   0.66   2.019 3.576
+#> 
+#> - Statistics:
+#> 
+#>   + Overall effect: 
+#>     * P-value = 0
+#>   + PI (mean effect):  
+#>     * Score = 17.527
+#>     * P-value = 0
+#>   + TAU (heterogeneous effect):  
+#>     * Score = 5.4
+#>     * P-value = 0.175
+```
