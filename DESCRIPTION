@@ -22,7 +22,9 @@ Depends: R (>= 3.3.0)
 Imports: 
     MASS,
     CompQuadForm
-Suggests: knitr
+Suggests: 
+    knitr,
+    testthat
 LazyData: true
 LazyLoad: yes
 RoxygenNote: 6.1.1

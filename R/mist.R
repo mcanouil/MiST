@@ -72,6 +72,9 @@ mist <- function(
   weight.beta = NULL, # c(1, 25)
   maf = NULL
 ) {
+  if (length(intersect(model, c("guess", "continuous", "binary"))) == 0) {
+    stop('[MiST] "model" must be one of "guess", "continuous" or "binary".')
+  }
   check_y <- c("continuous", "binary")[(length(unique(y)) == 2) + 1]
   if (any(grepl("guess", model))) {
     message('[MiST] "y" seems to be "', check_y, '", model is set to "', check_y, '"!')
@@ -80,18 +83,19 @@ mist <- function(
   if (model != check_y) {
     warning('[MiST] "y" seems to be "', check_y,'" and model was set to "', model, '"!')
   }
-  switch(
+  output <- switch(
     EXPR = model,
     "continuous" = {
       message(paste('[MiST] Linear regression is ongoing ...'))
-      suppressMessages(mist_linear(y, X, G, Z, method, weight.beta, maf))
+      tidy_mist(mist_linear(y, X, G, Z, method, weight.beta, maf))
     },
     "binary" = {
       message('[MiST] Logistic regression is ongoing ...')
-      suppressMessages(mist_logit(y, X, G, Z, method, weight.beta, maf))
-    },
-    stop('[MiST] "model" must be one of "guess", "continuous" or "binary".')
+      tidy_mist(mist_logit(y, X, G, Z, method, weight.beta, maf))
+    }
   )
+  class(output) <- "mist"
+  output
 }
 
 
@@ -99,9 +103,11 @@ mist <- function(
 #'
 #' @param x [[mist]]
 #'
+#' @keywords internal
+#' @usage NULL
+#'
 #' @return list
-#' @export
-mist_print <- tidy_mist <- function(x) {
+tidy_mist <- function(x) {
   cluster_name <- gsub("^M", "", rownames(x$out_rare))
   rownames(x$out_rare) <- NULL
   stat_rare <- cbind.data.frame(
@@ -121,8 +127,7 @@ mist_print <- tidy_mist <- function(x) {
 #' @return list
 #' @export
 print.mist <- function(x, ...) {
-  out <- tidy_mist(x)
-  out$estimate[, -1] <- round(out$estimate[, -1], digits = 3)
+  x$estimate[, -1] <- round(x$estimate[, -1], digits = 3)
 
   cat(
     "",
@@ -134,7 +139,7 @@ print.mist <- function(x, ...) {
     sep = "\n"
   )
 
-  print.data.frame(out$estimate)
+  print.data.frame(x$estimate)
 
   cat(
     "\n",
@@ -142,19 +147,19 @@ print.mist <- function(x, ...) {
     "\n\n",
     "  + Overall effect: ",
     "\n",
-    "    * P-value = ", round(out$statistic[, "p.value.overall"], digits = 3),
+    "    * P-value = ", round(x$statistic[, "p.value.overall"], digits = 3),
     "\n",
     "  + PI (mean effect):  ",
     "\n",
-    "    * Score = ", round(out$statistic[, "S.pi"], digits = 3),
+    "    * Score = ", round(x$statistic[, "S.pi"], digits = 3),
     "\n",
-    "    * P-value = ", round(out$statistic[, "p.value.S.pi"], digits = 3),
+    "    * P-value = ", round(x$statistic[, "p.value.S.pi"], digits = 3),
     "\n",
     "  + TAU (heterogeneous effect):  ",
     "\n",
-    "    * Score = ", round(out$statistic[, "S.tau"], digits = 3),
+    "    * Score = ", round(x$statistic[, "S.tau"], digits = 3),
     "\n",
-    "    * P-value = ", round(out$statistic[, "p.value.S.tau"], digits = 3),
+    "    * P-value = ", round(x$statistic[, "p.value.S.tau"], digits = 3),
     "\n\n",
     sep = ""
   )
@@ -172,10 +177,14 @@ print.mist <- function(x, ...) {
 #'
 #' @return data.frame
 mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL) {
-  if (!is.vector(y, "numeric")) stop('"y" must be a numeric vector.')
-  if (!(is.matrix(X) & is.numeric(X))) stop('"X", must be a numeric matrix.')
-  if (!(is.matrix(G) & is.numeric(G))) stop('"G", must be a numeric matrix.')
-  if (!(is.matrix(Z) & is.numeric(Z))) stop('"Z", must be a numeric matrix.')
+  if (!is.vector(y, "numeric")) stop('[MiST] "y" must be a numeric vector.')
+  if (!(is.matrix(X) & is.numeric(X))) stop('[MiST] "X", must be a numeric matrix.')
+  if (!(is.matrix(G) & is.numeric(G))) stop('[MiST] "G", must be a numeric matrix.')
+  if (!(is.matrix(Z) & is.numeric(Z))) stop('[MiST] "Z", must be a numeric matrix.')
+  if ( (is.null(weight.beta) | is.null(maf)) & !all(is.null(c(weight.beta, maf))) ) {
+    warning('[MiST] Both or none of "weight.beta" and "maf" must be provided.')
+    message('[MiST] Falling back to default with "weight.beta = NULL" and "maf = NULL".')
+  }
 
   GZ <- G %*% Z
   M <- cbind(X, GZ)
@@ -233,13 +242,10 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
   lambda <- eigen.value
 
   if (method == "davies") {
-    p.value.S.tau <- try(CompQuadForm::davies(S.tau, lambda)$Qq, silent = TRUE)
+    p.value.S.tau <- tryCatch(CompQuadForm::davies(S.tau, lambda)$Qq, error = function(e) NA)
   }
   if (method == "liu") {
-    p.value.S.tau <- try(CompQuadForm::liu(S.tau, lambda), silent = TRUE)
-  }
-  if (class(p.value.S.tau)=="try-error") {
-    p.value.S.tau <- NA
+    p.value.S.tau <- tryCatch(CompQuadForm::liu(S.tau, lambda), error = function(e) NA)
   }
 
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
@@ -263,9 +269,7 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
   )
   rownames(out_rare) <- colnames(GZ)
 
-  output <- list(out_MiST = out_MiST, out_rare = out_rare)
-  class(output) <- "mist"
-  output
+  list(out_MiST = out_MiST, out_rare = out_rare)
 }
 
 
@@ -282,6 +286,10 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   if (!(is.matrix(G) & is.numeric(G))) stop('"G", must be a numeric matrix.')
   if (!(is.matrix(X) & is.numeric(X))) stop('"X", must be a numeric matrix.')
   if (!(is.matrix(Z) & is.numeric(Z))) stop('"Z", must be a numeric matrix.')
+  if ( (is.null(weight.beta) | is.null(maf)) & !all(is.null(c(weight.beta, maf))) ) {
+    warning('[MiST] Both or none of "weight.beta" and "maf" must be provided.')
+    message('[MiST] Falling back to default with "weight.beta = NULL" and "maf = NULL".')
+  }
 
   GZ <- G %*% Z
   M <- cbind(X, GZ)
@@ -330,13 +338,10 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   lambda <- eigen.value
 
   if (method == "davies") {
-    p.value.S.tau <- try(CompQuadForm::davies(S.tau, lambda)$Qq, silent = TRUE)
+    p.value.S.tau <- tryCatch(CompQuadForm::davies(S.tau, lambda)$Qq, error = function(e) NA)
   }
   if (method == "liu") {
-    p.value.S.tau <- try(CompQuadForm::liu(S.tau, lambda), silent = TRUE)
-  }
-  if (class(p.value.S.tau)=="try-error") {
-    p.value.S.tau <- NA
+    p.value.S.tau <- tryCatch(CompQuadForm::liu(S.tau, lambda), error = function(e) NA)
   }
 
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
@@ -359,7 +364,5 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   )
   rownames(out_rare) <- get_GZ
 
-  output <- list(out_MiST = out_MiST, out_rare = out_rare)
-  class(output) <- "mist"
-  output
+  list(out_MiST = out_MiST, out_rare = out_rare)
 }
