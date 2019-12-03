@@ -55,7 +55,7 @@ attach(mist_data)
 ### Continuous Outcome
 
 ``` r
-mist(
+res <- mist(
   y = phenotypes[, "y_taupi"],
   X = phenotypes[, paste0("x_cov", 0:2)],
   G = genotypes,
@@ -63,6 +63,21 @@ mist(
 )
 #> [MiST] "y" seems to be "continuous", model is set to "continuous"!
 #> [MiST] Linear regression is ongoing ...
+str(res)
+#> List of 2
+#>  $ estimate  :'data.frame':  1 obs. of  4 variables:
+#>   ..$ SubClusters: Factor w/ 1 level "cluster1": 1
+#>   ..$ Pi_hat     : num 0.248
+#>   ..$ CI_2.5     : num -0.389
+#>   ..$ CI_97.5    : num 0.885
+#>  $ statistics:'data.frame':  1 obs. of  5 variables:
+#>   ..$ S.pi           : num 0.601
+#>   ..$ p.value.S.pi   : num 0.438
+#>   ..$ S.tau          : num 1006
+#>   ..$ p.value.S.tau  : num 0.0111
+#>   ..$ p.value.overall: num 0.0307
+#>  - attr(*, "class")= chr "mist"
+print(res)
 #> 
 #> MiST: Mixed effects Score Test
 #> ------------------------------
@@ -87,7 +102,7 @@ mist(
 ### Binary Outcome
 
 ``` r
-mist(
+res <- mist(
   y = phenotypes[, "y_binary"],
   X = phenotypes[, paste0("x_cov", 0:2)],
   G = genotypes,
@@ -95,6 +110,23 @@ mist(
 )
 #> [MiST] "y" seems to be "binary", model is set to "binary"!
 #> [MiST] Logistic regression is ongoing ...
+#> Waiting for profiling to be done...
+str(res)
+#> List of 2
+#>  $ estimate  :'data.frame':  1 obs. of  5 variables:
+#>   ..$ SubClusters: Factor w/ 1 level "cluster1": 1
+#>   ..$ Pi_hat     : num 1.27
+#>   ..$ CI_2.5     : num 0.66
+#>   ..$ CI_97.5    : num 2.02
+#>   ..$ OR         : num 3.58
+#>  $ statistics:'data.frame':  1 obs. of  5 variables:
+#>   ..$ S.pi           : num 17.5
+#>   ..$ p.value.S.pi   : num 2.83e-05
+#>   ..$ S.tau          : num 5.4
+#>   ..$ p.value.S.tau  : num 0.175
+#>   ..$ p.value.overall: num 6.54e-05
+#>  - attr(*, "class")= chr "mist"
+print(res)
 #> 
 #> MiST: Mixed effects Score Test
 #> ------------------------------
