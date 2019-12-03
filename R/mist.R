@@ -115,7 +115,7 @@ tidy_mist <- function(x) {
     x$out_rare
   )
 
-  list(estimate = stat_rare, statistic = as.data.frame(x$out_MiST))
+  list(estimate = stat_rare, statistics = as.data.frame(x$out_MiST))
 }
 
 
@@ -147,19 +147,19 @@ print.mist <- function(x, ...) {
     "\n\n",
     "  + Overall effect: ",
     "\n",
-    "    * P-value = ", round(x$statistic[, "p.value.overall"], digits = 3),
+    "    * P-value = ", round(x$statistics[, "p.value.overall"], digits = 3),
     "\n",
     "  + PI (mean effect):  ",
     "\n",
-    "    * Score = ", round(x$statistic[, "S.pi"], digits = 3),
+    "    * Score = ", round(x$statistics[, "S.pi"], digits = 3),
     "\n",
-    "    * P-value = ", round(x$statistic[, "p.value.S.pi"], digits = 3),
+    "    * P-value = ", round(x$statistics[, "p.value.S.pi"], digits = 3),
     "\n",
     "  + TAU (heterogeneous effect):  ",
     "\n",
-    "    * Score = ", round(x$statistic[, "S.tau"], digits = 3),
+    "    * Score = ", round(x$statistics[, "S.tau"], digits = 3),
     "\n",
-    "    * P-value = ", round(x$statistic[, "p.value.S.tau"], digits = 3),
+    "    * P-value = ", round(x$statistics[, "p.value.S.tau"], digits = 3),
     "\n\n",
     sep = ""
   )
