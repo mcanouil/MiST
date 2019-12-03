@@ -110,7 +110,6 @@ res <- mist(
 )
 #> [MiST] "y" seems to be "binary", model is set to "binary"!
 #> [MiST] Logistic regression is ongoing ...
-#> Waiting for profiling to be done...
 str(res)
 #> List of 2
 #>  $ estimate  :'data.frame':  1 obs. of  5 variables:
