@@ -108,14 +108,14 @@ mist <- function(
 #'
 #' @return list
 tidy_mist <- function(x) {
-  cluster_name <- gsub("^M", "", rownames(x$out_rare))
-  rownames(x$out_rare) <- NULL
+  cluster_name <- gsub("^M", "", rownames(x$out_estimate))
+  rownames(x$out_estimate) <- NULL
   stat_rare <- cbind.data.frame(
     "SubClusters" = ifelse(cluster_name == "", "None", cluster_name),
-    x$out_rare
+    x$out_estimate
   )
 
-  list(estimate = stat_rare, statistics = as.data.frame(x$out_MiST))
+  list(estimate = stat_rare, statistics = as.data.frame(x$out_statistics))
 }
 
 
@@ -256,7 +256,7 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
   p.value.overall <- 1 - stats::pchisq(q.fisher, df = 4)
 
-  out_MiST <- list(
+  out_statistics <- list(
     S.pi = S.pi,
     p.value.S.pi = p.value.S.pi,
     S.tau = S.tau,
@@ -267,14 +267,14 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
   get_GZ <- grep("GZ", names(fit.0a$coefficients), value = TRUE)
   CI <- as.data.frame(stats::confint(fit.0a)[get_GZ, , drop = FALSE])
   colnames(CI) <- c("CI_2.5", "CI_97.5")
-  out_rare <- cbind(
+  out_estimate <- cbind(
     Pi_hat = fit.0a$coefficients[get_GZ],
     CI,
     OR = exp(stats::coef(fit.0a)[get_GZ])
   )
-  rownames(out_rare) <- colnames(GZ)
+  rownames(out_estimate) <- colnames(GZ)
 
-  list(out_MiST = out_MiST, out_rare = out_rare)
+  list(out_statistics = out_statistics, out_estimate = out_estimate)
 }
 
 
@@ -357,7 +357,7 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
   p.value.overall <- 1 - stats::pchisq(q.fisher, df = 4)
 
-  out_MiST <- list(
+  out_statistics <- list(
     S.pi = S.pi,
     p.value.S.pi = p.value.S.pi,
     S.tau = S.tau,
@@ -368,11 +368,11 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   get_GZ <- sapply(colnames(GZ), grep, names(fit.0a$coefficients), value = TRUE)
   CI <- as.data.frame(stats::confint(fit.0a)[get_GZ, , drop = FALSE])
   colnames(CI) <- c("CI_2.5", "CI_97.5")
-  out_rare <- cbind(
+  out_estimate <- cbind(
     Pi_hat = fit.0a$coefficients[get_GZ],
     CI
   )
-  rownames(out_rare) <- get_GZ
+  rownames(out_estimate) <- get_GZ
 
-  list(out_MiST = out_MiST, out_rare = out_rare)
+  list(out_statistics = out_statistics, out_estimate = out_estimate)
 }
