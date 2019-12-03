@@ -1,9 +1,8 @@
 ---
-title: 'MiST'
-subtitle: "Mixed effects Score Test"
+title: 'MiST: *Mi*xed effects *S*core *T*est'
 author: "Jianping Sun, Yingye Zheng and Li Hsu"
 email: "mickael.canouil@cnrs.fr"
-date: '`r format(Sys.time(), "%B %d, %Y")`'
+date: '`r format(Sys.time(), "%d %B %Y")`'
 output:
   rmarkdown::html_vignette:
     number_sections: true
@@ -31,22 +30,6 @@ knitr::opts_chunk$set(
   cache = FALSE
 )
 ```
-
-# *Mi*xed effects *S*core *T*est
-
-<!-- badges: start -->
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![GitHub tag](https://img.shields.io/github/tag/mcanouil/MiST.svg?label=latest tag)](https://github.com/mcanouil/MiST)
-[![Travis-CI Build Status](https://travis-ci.org/mcanouil/MiST.svg?branch=master)](https://travis-ci.org/mcanouil/MiST)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mcanouil/MiST?branch=master&svg=true)](https://ci.appveyor.com/project/mcanouil/MiST)
-[![Coverage Status (codecov)](https://codecov.io/gh/mcanouil/MiST/branch/master/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiST)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/MiST)](https://cran.r-project.org/package=MiST)
-[![cran checks_worst](https://cranchecks.info/badges/worst/MiST)](https://cran.r-project.org/web/checks/check_results_MiST.html)
-[![CRAN_Download_total](https://cranlogs.r-pkg.org/badges/MiST)](https://cran.r-project.org/package=MiST)
-<!--[![cran checks_summary](https://cranchecks.info/badges/summary/MiST)](https://cran.r-project.org/web/checks/check_results_MiST.html)-->
-<!--[![CRAN_Download_month](https://cranlogs.r-pkg.org/badges/MiST?color=brightgreen)](https://cran.r-project.org/package=MiST)-->
-<!--[![Coverage Status (coveralls)](https://coveralls.io/repos/github/mcanouil/MiST/badge.svg?branch=master)](https://coveralls.io/github/mcanouil/MiST?branch=master)-->
-<!-- badges: end -->
 
 Test for association between a set of SNPS/genes and continuous or binary outcomes by including variant characteristic information and using (weighted) score statistics.
 
