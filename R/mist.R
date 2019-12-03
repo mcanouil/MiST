@@ -238,13 +238,13 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
   } else {
     Mat <- 0.5 * sqrt(W) %*% t(G) %*% P02 %*% G %*% sqrt(W)
   }
-  eigen.value <- eigen(Mat, symmetric = TRUE)$values
-  lambda <- eigen.value
+  lambda <- eigen(Mat, symmetric = TRUE)$values
 
   if (method == "davies") {
     p.value.S.tau <- tryCatch(
       expr = CompQuadForm::davies(S.tau, lambda)$Qq,
-      error = function(e) NA)
+      error = function(e) NA
+    )
   }
   if (method == "liu") {
     p.value.S.tau <- tryCatch(
@@ -339,13 +339,13 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
     P1.G <- P1 %*% G %*% sqrt(W)
   }
   Mat <- (hat.sigma2) * t(P1.G) %*% P1.G
-  eigen.value <- eigen(Mat, symmetric = TRUE)$values
-  lambda <- eigen.value
+  lambda <- eigen(Mat, symmetric = TRUE)$values
 
   if (method == "davies") {
     p.value.S.tau <- tryCatch(
       expr = CompQuadForm::davies(S.tau, lambda)$Qq,
-      error = function(e) NA)
+      error = function(e) NA
+    )
   }
   if (method == "liu") {
     p.value.S.tau <- tryCatch(
