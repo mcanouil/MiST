@@ -44,3 +44,33 @@ install.packages("MiST")
 # install.packages("remotes")
 remotes::install_github("mcanouil/MiST")
 ```
+
+## MiST in Action
+
+```{r}
+library(MiST)
+data(mist_data)
+attach(mist_data)
+```
+
+### Continuous Outcome
+
+```{r}
+mist(
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
+)
+```
+
+### Binary Outcome
+
+```{r}
+mist(
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
+)
+```

@@ -52,102 +52,22 @@ including variant characteristic information and using score statistics.
 }
 \examples{
 
-if (interactive()) {
-
-set.seed(20191202)
-sample_size <- 100
-data <- data.frame(
-  y_continuous = c(rnorm(sample_size / 2, 10, 2), rnorm(sample_size / 2, 10, 2)),
-  y_binary = rep(c(0, 1), each = sample_size / 2),
-  x_cov1 = runif(sample_size),
-  x_cov2 = rnorm(sample_size, 25, 5),
-  g_variant1 = c(rbinom(sample_size / 2, 2, prob = 0.01), rbinom(sample_size / 2, 2, prob = 0.05)),
-  g_variant2 = c(rbinom(sample_size / 2, 2, prob = 0.01), rbinom(sample_size / 2, 2, prob = 0.05)),
-  g_variant3 = c(rbinom(sample_size / 2, 2, prob = 0.01), rbinom(sample_size / 2, 2, prob = 0.05)),
-  g_variant4 = c(rbinom(sample_size / 2, 2, prob = 0.01), rbinom(sample_size / 2, 2, prob = 0.05))
-)
-z_1 <- matrix(
-  data = 1,
-  nrow = length(paste0("g_variant", 1:4)),
-  ncol = 1,
-  dimnames = list(paste0("g_variant", 1:4), "cluster")
-)
-z_2 <- matrix(
-  c(1, 1, 0, 0, 0, 0, 1, 1),
-  nrow = length(paste0("g_variant", 1:4)),
-  ncol = 2,
-  dimnames = list(paste0("g_variant", 1:4), paste0("cluster", 1:2))
-)
-
-
-## One cluster
+library(MiST)
+data(mist_data)
+attach(mist_data)
 
 mist(
-  y = data[, "y_continuous"],
-  X = as.matrix(data[, paste0("x_cov", 1:2), drop = FALSE]),
-  G = as.matrix(data[, paste0("g_variant", 1:4), drop = FALSE]),
-  Z = z_1,
-  method = "liu",
-  model = "continuous"
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
 )
 
 mist(
-  y = data[, "y_binary"],
-  X = as.matrix(data[, paste0("x_cov", 1:2), drop = FALSE]),
-  G = as.matrix(data[, paste0("g_variant", 1:4), drop = FALSE]),
-  Z = z_1,
-  method = "liu",
-  model = "binary"
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
 )
-
-
-## Two clusters
-
-mist(
-  y = data[, "y_continuous"],
-  X = as.matrix(data[, paste0("x_cov", 1:2), drop = FALSE]),
-  G = as.matrix(data[, paste0("g_variant", 1:4), drop = FALSE]),
-  Z = z_2,
-  method = "liu",
-  model = "continuous"
-)
-
-mist(
-  y = data[, "y_binary"],
-  X = as.matrix(data[, paste0("x_cov", 1:2), drop = FALSE]),
-  G = as.matrix(data[, paste0("g_variant", 1:4), drop = FALSE]),
-  Z = z_2,
-  method = "liu",
-  model = "binary"
-)
-
-
-## Weighted
-
-maf <- colSums(as.matrix(data[, paste0("g_variant", 1:4), drop = FALSE])) / (nrow(data) * 2)
-
-mist(
-  y = data[, "y_continuous"],
-  X = as.matrix(data[, paste0("x_cov", 1:2), drop = FALSE]),
-  G = as.matrix(data[, paste0("g_variant", 1:4), drop = FALSE]),
-  Z = z_1,
-  method = "liu",
-  model = "continuous",
-  weight.beta = c(1,25),
-  maf = maf
-)
-
-mist(
-  y = data[, "y_binary"],
-  X = as.matrix(data[, paste0("x_cov", 1:2), drop = FALSE]),
-  G = as.matrix(data[, paste0("g_variant", 1:4), drop = FALSE]),
-  Z = z_1,
-  method = "liu",
-  model = "binary",
-  weight.beta = c(1,25),
-  maf = maf
-)
-
-}
 
 }
