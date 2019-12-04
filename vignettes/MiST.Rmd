@@ -18,16 +18,8 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  eval = TRUE,
   collapse = TRUE,
-  include = TRUE,
-  echo = TRUE,
-  warning = TRUE,
-  message = TRUE,
-  error = TRUE,
-  fig.align = 'center',
-  fig.pos = '!h',
-  cache = FALSE
+  comment = "#>"
 )
 ```
 
