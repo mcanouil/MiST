@@ -11,20 +11,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-# *Mi*xed effects *S*core *T*est
+# *MiSTr*: *Mi*xed effects *S*core *T*est
 
 <!-- badges: start -->
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![GitHub tag](https://img.shields.io/github/tag/mcanouil/MiST.svg?label=latest tag)](https://github.com/mcanouil/MiST)
-[![Travis-CI Build Status](https://travis-ci.org/mcanouil/MiST.svg?branch=master)](https://travis-ci.org/mcanouil/MiST)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mcanouil/MiST?branch=master&svg=true)](https://ci.appveyor.com/project/mcanouil/MiST)
-[![Coverage Status (codecov)](https://codecov.io/gh/mcanouil/MiST/branch/master/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiST)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/MiST)](https://cran.r-project.org/package=MiST)
-[![cran checks_worst](https://cranchecks.info/badges/worst/MiST)](https://cran.r-project.org/web/checks/check_results_MiST.html)
-[![CRAN_Download_total](https://cranlogs.r-pkg.org/badges/MiST)](https://cran.r-project.org/package=MiST)
-<!--[![cran checks_summary](https://cranchecks.info/badges/summary/MiST)](https://cran.r-project.org/web/checks/check_results_MiST.html)-->
-<!--[![CRAN_Download_month](https://cranlogs.r-pkg.org/badges/MiST?color=brightgreen)](https://cran.r-project.org/package=MiST)-->
-<!--[![Coverage Status (coveralls)](https://coveralls.io/repos/github/mcanouil/MiST/badge.svg?branch=master)](https://coveralls.io/github/mcanouil/MiST?branch=master)-->
+[![GitHub tag](https://img.shields.io/github/tag/mcanouil/MiSTr.svg?label=latest tag)](https://github.com/mcanouil/MiSTr)
+[![Travis-CI Build Status](https://travis-ci.org/mcanouil/MiSTr.svg?branch=master)](https://travis-ci.org/mcanouil/MiSTr)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mcanouil/MiSTr?branch=master&svg=true)](https://ci.appveyor.com/project/mcanouil/MiSTr)
+[![Coverage Status (codecov)](https://codecov.io/gh/mcanouil/MiSTr/branch/master/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/MiSTr)](https://cran.r-project.org/package=MiSTr)
+[![cran checks_worst](https://cranchecks.info/badges/worst/MiSTr)](https://cran.r-project.org/web/checks/check_results_MiSTr.html)
+[![CRAN_Download_total](https://cranlogs.r-pkg.org/badges/MiSTr)](https://cran.r-project.org/package=MiSTr)
+<!--[![cran checks_summary](https://cranchecks.info/badges/summary/MiSTr)](https://cran.r-project.org/web/checks/check_results_MiSTr.html)-->
+<!--[![CRAN_Download_month](https://cranlogs.r-pkg.org/badges/MiSTr?color=brightgreen)](https://cran.r-project.org/package=MiSTr)-->
+<!--[![Coverage Status (coveralls)](https://coveralls.io/repos/github/mcanouil/MiSTr/badge.svg?branch=master)](https://coveralls.io/github/mcanouil/MiSTr?branch=master)-->
 <!-- badges: end -->
 
 Test for association between a set of SNPS/genes and continuous or binary outcomes by including variant characteristic information and using (weighted) score statistics.
@@ -37,18 +37,18 @@ Test for association between a set of SNPS/genes and continuous or binary outcom
 ## Installation
 
 ```{r, eval = FALSE}
-# Install MiST from CRAN:
-install.packages("MiST")
+# Install MiSTr from CRAN:
+install.packages("MiSTr")
 
 # Or the the development version from GitHub:
 # install.packages("remotes")
-remotes::install_github("mcanouil/MiST")
+remotes::install_github("mcanouil/MiSTr")
 ```
 
-## MiST in Action
+## MiSTr in Action
 
 ```{r}
-library(MiST)
+library(MiSTr)
 data(mist_data)
 attach(mist_data)
 ```

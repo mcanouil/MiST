@@ -1,14 +1,3 @@
-#-------------------------------------------------------------------------------
-# Name - MiST: Mixed effects Score Test
-# Desc - Test for association between a set of SNPS/genes and continuous
-#        or binary outcomes by including variant characteristic information
-#        and using (weighted) score statistics.
-# Version - 1.1.0
-# Author - Mickaël Canouil, Ph.D.
-# From - https://cran.r-project.org/package=MiST (v1.0)
-# References - https://doi.org/10.1002/gepi.21717
-#-------------------------------------------------------------------------------
-
 #' mist
 #'
 #' Test for association between a set of SNPS/genes and continuous outcomes by
@@ -47,7 +36,7 @@
 #'
 #' @examples
 #'
-#' library(MiST)
+#' library(MiSTr)
 #' data(mist_data)
 #' attach(mist_data)
 #'
@@ -73,24 +62,24 @@ mist <- function(
   maf = NULL
 ) {
   if (length(intersect(model, c("guess", "continuous", "binary"))) == 0) {
-    stop('[MiST] "model" must be one of "guess", "continuous" or "binary".')
+    stop('[MiSTr] "model" must be one of "guess", "continuous" or "binary".')
   }
   check_y <- c("continuous", "binary")[(length(unique(y)) == 2) + 1]
   if (any(grepl("guess", model))) {
-    message('[MiST] "y" seems to be "', check_y, '", model is set to "', check_y, '"!')
+    message('[MiSTr] "y" seems to be "', check_y, '", model is set to "', check_y, '"!')
     model <- check_y
   }
   if (model != check_y) {
-    warning('[MiST] "y" seems to be "', check_y,'" and model was set to "', model, '"!')
+    warning('[MiSTr] "y" seems to be "', check_y,'" and model was set to "', model, '"!')
   }
   output <- switch(
     EXPR = model,
     "continuous" = {
-      message(paste('[MiST] Linear regression is ongoing ...'))
+      message(paste('[MiSTr] Linear regression is ongoing ...'))
       tidy_mist(suppressMessages(mist_linear(y, X, G, Z, method, weight.beta, maf)))
     },
     "binary" = {
-      message('[MiST] Logistic regression is ongoing ...')
+      message('[MiSTr] Logistic regression is ongoing ...')
       tidy_mist(suppressMessages(mist_logit(y, X, G, Z, method, weight.beta, maf)))
     }
   )
@@ -131,8 +120,8 @@ print.mist <- function(x, ...) {
 
   cat(
     "",
-    "MiST: Mixed effects Score Test",
-    "------------------------------",
+    "MiSTr: Mixed effects Score Test",
+    "-------------------------------",
     "",
     "- Estimate:",
     "",
@@ -177,13 +166,13 @@ print.mist <- function(x, ...) {
 #'
 #' @return data.frame
 mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL) {
-  if (!is.vector(y, "numeric")) stop('[MiST] "y" must be a numeric vector.')
-  if (!(is.matrix(X) & is.numeric(X))) stop('[MiST] "X", must be a numeric matrix.')
-  if (!(is.matrix(G) & is.numeric(G))) stop('[MiST] "G", must be a numeric matrix.')
-  if (!(is.matrix(Z) & is.numeric(Z))) stop('[MiST] "Z", must be a numeric matrix.')
+  if (!is.vector(y, "numeric")) stop('[MiSTr] "y" must be a numeric vector.')
+  if (!(is.matrix(X) & is.numeric(X))) stop('[MiSTr] "X", must be a numeric matrix.')
+  if (!(is.matrix(G) & is.numeric(G))) stop('[MiSTr] "G", must be a numeric matrix.')
+  if (!(is.matrix(Z) & is.numeric(Z))) stop('[MiSTr] "Z", must be a numeric matrix.')
   if ( (is.null(weight.beta) | is.null(maf)) & !all(is.null(c(weight.beta, maf))) ) {
-    warning('[MiST] Both or none of "weight.beta" and "maf" must be provided.')
-    message('[MiST] Falling back to default with "weight.beta = NULL" and "maf = NULL".')
+    warning('[MiSTr] Both or none of "weight.beta" and "maf" must be provided.')
+    message('[MiSTr] Falling back to default with "weight.beta = NULL" and "maf = NULL".')
   }
 
   GZ <- G %*% Z
@@ -292,8 +281,8 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   if (!(is.matrix(X) & is.numeric(X))) stop('"X", must be a numeric matrix.')
   if (!(is.matrix(Z) & is.numeric(Z))) stop('"Z", must be a numeric matrix.')
   if ( (is.null(weight.beta) | is.null(maf)) & !all(is.null(c(weight.beta, maf))) ) {
-    warning('[MiST] Both or none of "weight.beta" and "maf" must be provided.')
-    message('[MiST] Falling back to default with "weight.beta = NULL" and "maf = NULL".')
+    warning('[MiSTr] Both or none of "weight.beta" and "maf" must be provided.')
+    message('[MiSTr] Falling back to default with "weight.beta = NULL" and "maf = NULL".')
   }
 
   GZ <- G %*% Z

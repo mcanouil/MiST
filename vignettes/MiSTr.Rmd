@@ -1,5 +1,5 @@
 ---
-title: 'MiST: *Mi*xed effects *S*core *T*est'
+title: 'MiSTr: *Mi*xed effects *S*core *T*est'
 author: "Jianping Sun, Yingye Zheng and Li Hsu"
 email: "mickael.canouil@cnrs.fr"
 date: '`r format(Sys.time(), "%d %B %Y")`'
@@ -11,7 +11,7 @@ output:
     fig_width: 6.3
     fig_height: 4.7
 vignette: >
-  %\VignetteIndexEntry{MiST}
+  %\VignetteIndexEntry{MiSTr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -33,18 +33,18 @@ Test for association between a set of SNPS/genes and continuous or binary outcom
 ## Installation
 
 ```{r, eval = FALSE}
-# Install MiST from CRAN:
-install.packages("MiST")
+# Install MiSTr from CRAN:
+install.packages("MiSTr")
 
 # Or the the development version from GitHub:
 # install.packages("remotes")
-remotes::install_github("mcanouil/MiST")
+remotes::install_github("mcanouil/MiSTr")
 ```
 
-## MiST in Action
+## MiSTr in Action
 
 ```{r}
-library(MiST)
+library(MiSTr)
 data(mist_data)
 attach(mist_data)
 ```
