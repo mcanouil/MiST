@@ -31,7 +31,7 @@ mist_conflicts <- function() {
 
   conflicts <- purrr::keep(objs, ~ length(.x) > 1)
 
-  tidy_names <- paste0("package:", mist_packages())
+  tidy_names <- "package:MiST"
   conflicts <- purrr::keep(conflicts, ~ any(.x %in% tidy_names))
 
   conflict_funs <- purrr::imap(conflicts, confirm_conflict)
@@ -100,7 +100,7 @@ ls_env <- function(env) {
 
 msg <- function(..., startup = FALSE) {
   if (startup) {
-    if (!isTRUE(getOption("carot.quiet"))) {
+    if (!isTRUE(getOption("mist.quiet"))) {
       packageStartupMessage(text_col(...))
     }
   } else {
@@ -122,19 +122,6 @@ text_col <- function(x) {
 
   if (isTRUE(theme$dark)) crayon::white(x) else crayon::black(x)
 
-}
-
-mist_packages <- function(include_self = TRUE) {
-  raw <- utils::packageDescription("CARoT")$Imports
-  imports <- strsplit(raw, ",")[[1]]
-  parsed <- gsub("^\\s+|\\s+$", "", imports)
-  names <- vapply(strsplit(parsed, "\\s+"), "[[", 1, FUN.VALUE = character(1))
-
-  if (include_self) {
-    names <- c(names, "carot")
-  }
-
-  names
 }
 
 invert <- function(x) {
