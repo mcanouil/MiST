@@ -1,3 +1,4 @@
+# nocov start
 .onAttach <- function(...) {
   crayon::num_colors(TRUE)
   if (!"package:conflicted" %in% search()) {
@@ -5,10 +6,6 @@
     msg(mist_conflict_message(x), startup = TRUE)
   }
 
-}
-
-is_attached <- function(x) {
-  paste0("package:", x) %in% search()
 }
 
 #' Conflicts between the mist and other packages
@@ -91,11 +88,7 @@ confirm_conflict <- function(packages, name) {
 }
 
 ls_env <- function(env) {
-  x <- ls(pos = env)
-  if (identical(env, "package:dplyr")) {
-    x <- setdiff(x, c("intersect", "setdiff", "setequal", "union"))
-  }
-  x
+  ls(pos = env)
 }
 
 msg <- function(..., startup = FALSE) {
@@ -130,10 +123,4 @@ invert <- function(x) {
   tapply(as.character(stacked$ind), stacked$values, list)
 }
 
-
-style_grey <- function(level, ...) {
-  crayon::style(
-    paste0(...),
-    crayon::make_style(grDevices::grey(level), grey = TRUE)
-  )
-}
+# nocov end
