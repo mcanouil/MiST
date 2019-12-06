@@ -52,7 +52,7 @@ including variant characteristic information and using score statistics.
 }
 \examples{
 
-library(MiST)
+library(MiSTr)
 data(mist_data)
 attach(mist_data)
 
