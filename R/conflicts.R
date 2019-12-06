@@ -1,4 +1,5 @@
 # nocov start
+
 .onAttach <- function(...) {
   crayon::num_colors(TRUE)
   if (!"package:conflicted" %in% search()) {
