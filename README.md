@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *MiSTr*: *Mi*xed effects *S*core *T*est
+# *MiSTr*: *Mi*xed effects *S*core *T*est <img src="man/figures/mistr_hex.png" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -15,10 +15,9 @@ Status](https://travis-ci.org/mcanouil/MiSTr.svg?branch=master)](https://travis-
 Status](https://ci.appveyor.com/api/projects/status/github/mcanouil/MiSTr?branch=master&svg=true)](https://ci.appveyor.com/project/mcanouil/MiSTr)
 [![Coverage Status
 (codecov)](https://codecov.io/gh/mcanouil/MiSTr/branch/master/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version-ago/MiSTr)](https://cran.r-project.org/package=MiSTr)
-[![cran
-checks\_worst](https://cranchecks.info/badges/worst/MiSTr)](https://cran.r-project.org/web/checks/check_results_MiSTr.html)
-[![CRAN\_Download\_total](https://cranlogs.r-pkg.org/badges/MiSTr)](https://cran.r-project.org/package=MiSTr)
+<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/MiSTr)](https://cran.r-project.org/package=MiSTr) -->
+<!-- [![cran checks_worst](https://cranchecks.info/badges/worst/MiSTr)](https://cran.r-project.org/web/checks/check_results_MiSTr.html) -->
+<!-- [![CRAN_Download_total](https://cranlogs.r-pkg.org/badges/MiSTr)](https://cran.r-project.org/package=MiSTr) -->
 <!--[![cran checks_summary](https://cranchecks.info/badges/summary/MiSTr)](https://cran.r-project.org/web/checks/check_results_MiSTr.html)-->
 <!--[![CRAN_Download_month](https://cranlogs.r-pkg.org/badges/MiSTr?color=brightgreen)](https://cran.r-project.org/package=MiSTr)-->
 <!--[![Coverage Status (coveralls)](https://coveralls.io/repos/github/mcanouil/MiSTr/badge.svg?branch=master)](https://coveralls.io/github/mcanouil/MiSTr?branch=master)-->
