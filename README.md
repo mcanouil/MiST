@@ -29,7 +29,7 @@ using (weighted) score statistics.
 
 **Note:**
 
-  - From: <https://cran.r-project.org/package=MiST> (v1.0)
+  - From: <https://cran.r-project.org/src/contrib/MiST_1.0.tar.gz>
   - Reference: <https://doi.org/10.1002/gepi.21717>
 
 ## Installation
