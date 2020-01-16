@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *MiSTr*: *Mi*xed effects *S*core *T*est <img src="man/figures/mistr_hex.png" align="right" width="120" />
+# *MiSTr*: *Mi*xed effects *S*core *T*est <img src="man/figures/mistr.png" align="right" width="120" />
 
 <!-- badges: start -->
 
