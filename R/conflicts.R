@@ -4,9 +4,9 @@
   crayon::num_colors(TRUE)
   if (!"package:conflicted" %in% search()) {
     x <- mist_conflicts()
+    if (length(x) == 0) return(invisible())
     msg(mist_conflict_message(x), startup = TRUE)
   }
-
 }
 
 #' Conflicts between the mist and other packages
