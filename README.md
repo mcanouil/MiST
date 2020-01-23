@@ -84,13 +84,13 @@ print(res)
 #> - Statistics:
 #> 
 #>   + Overall effect: 
-#>     * P-value = 0.031
+#>     * P-value = 0.0307
 #>   + PI (mean effect):  
 #>     * Score = 0.601
 #>     * P-value = 0.438
 #>   + TAU (heterogeneous effect):  
 #>     * Score = 1006.125
-#>     * P-value = 0.011
+#>     * P-value = 0.0111
 ```
 
 ### Binary Outcome
@@ -133,10 +133,10 @@ print(res)
 #> - Statistics:
 #> 
 #>   + Overall effect: 
-#>     * P-value = 0
+#>     * P-value = 6.54e-05
 #>   + PI (mean effect):  
 #>     * Score = 17.527
-#>     * P-value = 0
+#>     * P-value = 2.83e-05
 #>   + TAU (heterogeneous effect):  
 #>     * Score = 5.4
 #>     * P-value = 0.175
