@@ -15,12 +15,6 @@ Status](https://travis-ci.org/mcanouil/MiSTr.svg?branch=master)](https://travis-
 Status](https://ci.appveyor.com/api/projects/status/github/mcanouil/MiSTr?branch=master&svg=true)](https://ci.appveyor.com/project/mcanouil/MiSTr)
 [![Coverage Status
 (codecov)](https://codecov.io/gh/mcanouil/MiSTr/branch/master/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr)
-<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/MiSTr)](https://cran.r-project.org/package=MiSTr) -->
-<!-- [![cran checks_worst](https://cranchecks.info/badges/worst/MiSTr)](https://cran.r-project.org/web/checks/check_results_MiSTr.html) -->
-<!-- [![CRAN_Download_total](https://cranlogs.r-pkg.org/badges/MiSTr)](https://cran.r-project.org/package=MiSTr) -->
-<!--[![cran checks_summary](https://cranchecks.info/badges/summary/MiSTr)](https://cran.r-project.org/web/checks/check_results_MiSTr.html)-->
-<!--[![CRAN_Download_month](https://cranlogs.r-pkg.org/badges/MiSTr?color=brightgreen)](https://cran.r-project.org/package=MiSTr)-->
-<!--[![Coverage Status (coveralls)](https://coveralls.io/repos/github/mcanouil/MiSTr/badge.svg?branch=master)](https://coveralls.io/github/mcanouil/MiSTr?branch=master)-->
 <!-- badges: end -->
 
 Test for association between a set of SNPS/genes and continuous or
@@ -47,7 +41,6 @@ remotes::install_github("mcanouil/MiSTr")
 
 ``` r
 library(MiSTr)
-#> 
 data(mist_data)
 attach(mist_data)
 ```
@@ -65,9 +58,10 @@ res <- mist(
 #> [MiSTr] Linear regression is ongoing ...
 str(res)
 #> List of 2
-#>  $ estimate  :'data.frame':  1 obs. of  4 variables:
+#>  $ estimate  :'data.frame':  1 obs. of  5 variables:
 #>   ..$ SubClusters: Factor w/ 1 level "cluster1": 1
 #>   ..$ Pi_hat     : num 0.248
+#>   ..$ SE         : num 0.321
 #>   ..$ CI_2.5     : num -0.389
 #>   ..$ CI_97.5    : num 0.885
 #>  $ statistics:'data.frame':  1 obs. of  5 variables:
@@ -82,10 +76,10 @@ print(res)
 #> MiSTr: Mixed effects Score Test
 #> -------------------------------
 #> 
-#> - Estimate:
+#> - (Raw) Estimates:
 #> 
-#>   SubClusters Pi_hat CI_2.5 CI_97.5
-#> 1    cluster1  0.248 -0.389   0.885
+#>   SubClusters Pi_hat    SE CI_2.5 CI_97.5
+#> 1    cluster1  0.248 0.321 -0.389   0.885
 #> 
 #> - Statistics:
 #> 
@@ -112,9 +106,10 @@ res <- mist(
 #> [MiSTr] Logistic regression is ongoing ...
 str(res)
 #> List of 2
-#>  $ estimate  :'data.frame':  1 obs. of  5 variables:
+#>  $ estimate  :'data.frame':  1 obs. of  6 variables:
 #>   ..$ SubClusters: Factor w/ 1 level "cluster1": 1
 #>   ..$ Pi_hat     : num 1.27
+#>   ..$ SE         : num 0.344
 #>   ..$ CI_2.5     : num 0.66
 #>   ..$ CI_97.5    : num 2.02
 #>   ..$ OR         : num 3.58
@@ -130,10 +125,10 @@ print(res)
 #> MiSTr: Mixed effects Score Test
 #> -------------------------------
 #> 
-#> - Estimate:
+#> - (Raw) Estimates:
 #> 
-#>   SubClusters Pi_hat CI_2.5 CI_97.5    OR
-#> 1    cluster1  1.274   0.66   2.019 3.576
+#>   SubClusters Pi_hat    SE CI_2.5 CI_97.5    OR
+#> 1    cluster1  1.274 0.344   0.66   2.019 3.576
 #> 
 #> - Statistics:
 #> 
