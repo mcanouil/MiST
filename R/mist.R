@@ -123,7 +123,7 @@ print.mist <- function(x, ...) {
     "MiSTr: Mixed effects Score Test",
     "-------------------------------",
     "",
-    "- Estimate:",
+    "- (Raw) Estimates:",
     "",
     sep = "\n"
   )
@@ -256,10 +256,12 @@ mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL
   get_GZ <- grep("GZ", names(fit.0a$coefficients), value = TRUE)
   CI <- as.data.frame(stats::confint(fit.0a)[get_GZ, , drop = FALSE])
   colnames(CI) <- c("CI_2.5", "CI_97.5")
+  fit.0a_coef <- stats::coef(summary(fit.0a))[get_GZ, , drop = FALSE]
   out_estimate <- cbind(
-    Pi_hat = fit.0a$coefficients[get_GZ],
+    Pi_hat = fit.0a_coef[, "Estimate"],
+    SE = fit.0a_coef[, "Std. Error"],
     CI,
-    OR = exp(stats::coef(fit.0a)[get_GZ])
+    OR = exp(fit.0a_coef[, "Estimate"])
   )
   rownames(out_estimate) <- colnames(GZ)
 
@@ -357,8 +359,10 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   get_GZ <- sapply(colnames(GZ), grep, names(fit.0a$coefficients), value = TRUE)
   CI <- as.data.frame(stats::confint(fit.0a)[get_GZ, , drop = FALSE])
   colnames(CI) <- c("CI_2.5", "CI_97.5")
+  fit.0a_coef <- stats::coef(summary(fit.0a))[get_GZ, , drop = FALSE]
   out_estimate <- cbind(
-    Pi_hat = fit.0a$coefficients[get_GZ],
+    Pi_hat = fit.0a_coef[, "Estimate"],
+    SE = fit.0a_coef[, "Std. Error"],
     CI
   )
   rownames(out_estimate) <- get_GZ
