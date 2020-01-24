@@ -19,7 +19,6 @@ jobs:
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
       - name: Commit README
         run: |
-          git add -f README.md
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
       - name: Push results
         run: |
