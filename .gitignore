@@ -10,3 +10,4 @@ revdep/data.sqlite
 docs
 .checks.R
 docs/
+**.md

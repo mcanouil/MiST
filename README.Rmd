@@ -38,6 +38,10 @@ install.packages("MiSTr")
 # install.packages("remotes")
 remotes::install_github("mcanouil/MiSTr")
 ```
+```{r, echo = FALSE}
+remotes::install_github("mcanouil/MiSTr")
+```
+
 
 ## MiSTr in Action
 
