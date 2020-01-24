@@ -38,27 +38,10 @@ remotes::install_github("mcanouil/MiSTr")
 ```
 
     #> Downloading GitHub repo mcanouil/MiSTr@master
-    #> cli          (NA -> 2.0.1) [CRAN]
-    #> CompQuadForm (NA -> 1.4.3) [CRAN]
-    #> crayon       (NA -> 1.3.4) [CRAN]
-    #> purrr        (NA -> 0.3.3) [CRAN]
-    #> rstudioapi   (NA -> 0.10 ) [CRAN]
-    #> assertthat   (NA -> 0.2.1) [CRAN]
-    #> fansi        (NA -> 0.4.1) [CRAN]
     #> Installing 7 packages: cli, CompQuadForm, crayon, purrr, rstudioapi, assertthat, fansi
     #> Installing packages into '/Users/runner/runners/2.164.0/work/_temp/Library'
     #> (as 'lib' is unspecified)
-    #> 
-    #> The downloaded binary packages are in
-    #>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEgY26D/downloaded_packages
     #> Running `R CMD build`...
-    #> * checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEgY26D/remotes7e01d910840/mcanouil-MiSTr-9ec9306/DESCRIPTION’ ... OK
-    #> * preparing ‘MiSTr’:
-    #> * checking DESCRIPTION meta-information ... OK
-    #> * checking for LF line-endings in source and make files and shell scripts
-    #> * checking for empty or unneeded directories
-    #> * looking to see if a ‘data/datalist’ file should be added
-    #> * building ‘MiSTr_1.0.0.9000.tar.gz’
     #> Installing package into '/Users/runner/runners/2.164.0/work/_temp/Library'
     #> (as 'lib' is unspecified)
 
