@@ -6,7 +6,7 @@ Date: 2019-11-29
 Authors@R: 
     c(person(given = "Jianping",
              family = "Sun",
-             role = c("aut", "cre"),
+             role = "aut",
              email = "sun@fhcrc.org"),
       person(given = "Yingye",
              family = "Zheng",
@@ -16,7 +16,7 @@ Authors@R:
              role = "aut"),
       person(given = "Mickaël",
              family = "Canouil",
-             role = "ctb",
+             role = c("cre", "ctb"),
              email = "mickael.canouil@cnrs.fr",
              comment = c(ORCID = "0000-0002-3396-4549")),
       person(given = "Mathilde",
