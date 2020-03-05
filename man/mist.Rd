@@ -4,8 +4,16 @@
 \alias{mist}
 \title{mist}
 \usage{
-mist(y, X, G, Z, method = "liu", model = c("guess", "continuous",
-  "binary"), weight.beta = NULL, maf = NULL)
+mist(
+  y,
+  X,
+  G,
+  Z,
+  method = "liu",
+  model = c("guess", "continuous", "binary"),
+  weight.beta = NULL,
+  maf = NULL
+)
 }
 \arguments{
 \item{y}{[\link{numeric}] A \code{numeric} vector of the continuous outcome variables. Missing values are not allowed.}
