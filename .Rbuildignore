@@ -13,3 +13,4 @@
 ^CRAN-RELEASE$
 ^.checks.R$
 ^docs$
+^.cran-checks.R$
