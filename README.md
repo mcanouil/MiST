@@ -37,14 +37,6 @@ install.packages("MiSTr")
 remotes::install_github("mcanouil/MiSTr")
 ```
 
-    #> Downloading GitHub repo mcanouil/MiSTr@master
-    #> Installing 7 packages: cli, CompQuadForm, crayon, purrr, rstudioapi, assertthat, fansi
-    #> Installing packages into '/Users/runner/runners/2.164.0/work/_temp/Library'
-    #> (as 'lib' is unspecified)
-    #> Running `R CMD build`...
-    #> Installing package into '/Users/runner/runners/2.164.0/work/_temp/Library'
-    #> (as 'lib' is unspecified)
-
 ## MiSTr in Action
 
 ``` r
