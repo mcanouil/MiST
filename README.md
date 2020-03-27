@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GitHub
 tag](https://img.shields.io/github/tag/mcanouil/MiSTr.svg?label=latest%20tag)](https://github.com/mcanouil/MiSTr)
 [![Travis-CI Build
