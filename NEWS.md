@@ -1,3 +1,9 @@
+# MiSTr 1.0.1
+
+## Minor dependency changes
+
+* Update Minimal R version to R 3.4.
+
 # MiSTr 1.0.0
 
 ## Major improvements and fixes
