@@ -4,7 +4,9 @@
 \name{mist_data}
 \alias{mist_data}
 \title{mist_data}
-\format{A [\link{list}] object.}
+\format{
+A [\link{list}] object.
+}
 \usage{
 mist_data
 }
