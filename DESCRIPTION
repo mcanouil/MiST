@@ -1,7 +1,7 @@
 Type: Package
 Package: MiSTr
 Title: Mixed effects Score Test for continuous outcomes
-Version: 1.0.0
+Version: 1.0.1
 Date: 2020-03-05
 Authors@R: 
     c(person(given = "Jianping",
