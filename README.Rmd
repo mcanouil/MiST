@@ -16,8 +16,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GitHub tag](https://img.shields.io/github/tag/mcanouil/MiSTr.svg?label=latest tag)](https://github.com/mcanouil/MiSTr)
-[![R build status](https://github.com/mcanouil/MiSTr/workflows/R-CMD-check/badge.svg)](https://github.com/mcanouil/MiSTr/actions)
-[![Coverage Status (codecov)](https://codecov.io/gh/mcanouil/MiSTr/branch/master/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr)
+[![Codecov test
+coverage](https://codecov.io/gh/mcanouil/MiSTr/branch/main/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr?branch=main)
+[![R-CMD-check](https://github.com/mcanouil/MiSTr/workflows/R-CMD-check/badge.svg)](https://github.com/mcanouil/MiSTr/actions)
 <!-- badges: end -->
 
 Test for association between a set of SNPS/genes and continuous or binary outcomes by including variant characteristic information and using (weighted) score statistics.
