@@ -72,23 +72,23 @@ str(res)
 #>   ..$ p.value.overall: num 0.0307
 #>  - attr(*, "class")= chr "mist"
 print(res)
-#> 
+#>
 #> MiSTr: Mixed effects Score Test
 #> -------------------------------
-#> 
+#>
 #> - (Raw) Estimates:
-#> 
+#>
 #>   SubClusters Pi_hat    SE CI_2.5 CI_97.5
 #> 1    cluster1  0.248 0.321 -0.389   0.885
-#> 
+#>
 #> - Statistics:
-#> 
-#>   + Overall effect: 
+#>
+#>   + Overall effect:
 #>     * P-value = 0.0307
-#>   + PI (mean effect):  
+#>   + PI (mean effect):
 #>     * Score = 0.601
 #>     * P-value = 0.438
-#>   + TAU (heterogeneous effect):  
+#>   + TAU (heterogeneous effect):
 #>     * Score = 1006.125
 #>     * P-value = 0.0111
 ```
@@ -121,23 +121,23 @@ str(res)
 #>   ..$ p.value.overall: num 6.54e-05
 #>  - attr(*, "class")= chr "mist"
 print(res)
-#> 
+#>
 #> MiSTr: Mixed effects Score Test
 #> -------------------------------
-#> 
+#>
 #> - (Raw) Estimates:
-#> 
+#>
 #>   SubClusters Pi_hat    SE CI_2.5 CI_97.5    OR
 #> 1    cluster1  1.274 0.344   0.66   2.019 3.576
-#> 
+#>
 #> - Statistics:
-#> 
-#>   + Overall effect: 
+#>
+#>   + Overall effect:
 #>     * P-value = 6.54e-05
-#>   + PI (mean effect):  
+#>   + PI (mean effect):
 #>     * Score = 17.527
 #>     * P-value = 2.83e-05
-#>   + TAU (heterogeneous effect):  
+#>   + TAU (heterogeneous effect):
 #>     * Score = 5.4
 #>     * P-value = 0.175
 ```
