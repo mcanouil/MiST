@@ -96,7 +96,7 @@ mist <- function(
 #'
 #' @return list
 tidy_mist <- function(x) {
-  cluster_name <- gsub("^M", "", rownames(x$out_estimate))
+  cluster_name <- sub("^M", "", rownames(x$out_estimate))
   rownames(x$out_estimate) <- NULL
   stat_rare <- cbind.data.frame(
     "SubClusters" = ifelse(cluster_name == "", "None", cluster_name),
@@ -193,8 +193,8 @@ mist_logit <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NUL
   d.0a <- mu.0a * (1 - mu.0a)
   res.0a <- y - mu.0a
 
-  n <- dim(X)[1]
-  I <- diag(1, n)
+  # n <- dim(X)[1]
+  # I <- diag(1, n)
 
   D.0 <- diag(d.0)
   D.0a <- diag(d.0a)
@@ -228,18 +228,20 @@ mist_logit <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NUL
   }
   lambda <- eigen(Mat, symmetric = TRUE)$values
 
-  if (method == "davies") {
-    p.value.S.tau <- tryCatch(
-      expr = CompQuadForm::davies(S.tau, lambda)$Qq,
-      error = function(e) NA
-    )
-  }
-  if (method == "liu") {
-    p.value.S.tau <- tryCatch(
-      expr = CompQuadForm::liu(S.tau, lambda),
-      error = function(e) NA
-    )
-  }
+  p.value.S.tau <- switch(EXPR = method,
+    "davies" = {
+      p.value.S.tau <- tryCatch(
+        expr = CompQuadForm::davies(S.tau, lambda)$Qq,
+        error = function(e) NA_character_
+      )
+    },
+    "liu" = {
+      p.value.S.tau <- tryCatch(
+        expr = CompQuadForm::liu(S.tau, lambda),
+        error = function(e) NA_character_
+      )
+    }
+  )
 
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
   p.value.overall <- 1 - stats::pchisq(q.fisher, df = 4)
@@ -331,18 +333,20 @@ mist_linear <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NU
   Mat <- (hat.sigma2) * t(P1.G) %*% P1.G
   lambda <- eigen(Mat, symmetric = TRUE)$values
 
-  if (method == "davies") {
-    p.value.S.tau <- tryCatch(
-      expr = CompQuadForm::davies(S.tau, lambda)$Qq,
-      error = function(e) NA
-    )
-  }
-  if (method == "liu") {
-    p.value.S.tau <- tryCatch(
-      expr = CompQuadForm::liu(S.tau, lambda),
-      error = function(e) NA
-    )
-  }
+  p.value.S.tau <- switch(EXPR = method,
+    "davies" = {
+      p.value.S.tau <- tryCatch(
+        expr = CompQuadForm::davies(S.tau, lambda)$Qq,
+        error = function(e) NA_character_
+      )
+    },
+    "liu" = {
+      p.value.S.tau <- tryCatch(
+        expr = CompQuadForm::liu(S.tau, lambda),
+        error = function(e) NA_complex_
+      )
+    }
+  )
 
   q.fisher <- -2 * (log(p.value.S.tau) + log(p.value.S.pi))
   p.value.overall <- 1 - stats::pchisq(q.fisher, df = 4)

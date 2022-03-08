@@ -1,6 +1,8 @@
 # MiSTr 1.0.2
 
 - Fix URLs in `DESCRIPTION`.
+- Minor code changes.
+- Remove "conflicts" code.
 
 # MiSTr 1.0.1
 
