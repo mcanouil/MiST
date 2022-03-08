@@ -61,9 +61,8 @@ mist <- function(
   weight.beta = NULL, # c(1, 25)
   maf = NULL
 ) {
-  if (length(intersect(model, c("guess", "continuous", "binary"))) == 0) {
-    stop('[MiSTr] "model" must be one of "guess", "continuous" or "binary".')
-  }
+  match.arg(model, c("guess", "continuous", "binary"))
+
   check_y <- c("continuous", "binary")[(length(unique(y)) == 2) + 1]
   if (any(grepl("guess", model))) {
     message('[MiSTr] "y" seems to be "', check_y, '", model is set to "', check_y, '"!')
