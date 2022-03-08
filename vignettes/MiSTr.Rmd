@@ -131,8 +131,8 @@ mist(
   G = genotypes,
   Z = variants_info[, 1, drop = FALSE],
   method = "liu",
-  model = "continuous", 
-  weight.beta = c(1, 25), 
+  model = "continuous",
+  weight.beta = c(1, 25),
   maf = variants_info[, "maf"]
 )
 ```
@@ -148,8 +148,8 @@ mist(
   G = genotypes[, get_same_effect],
   Z = variants_info[get_same_effect, 1, drop = FALSE],
   method = "liu",
-  model = "continuous", 
-  weight.beta = c(1, 25), 
+  model = "continuous",
+  weight.beta = c(1, 25),
   maf = variants_info[get_same_effect, "maf"]
 )
 ```
@@ -163,8 +163,8 @@ mist(
   G = genotypes,
   Z = variants_info[, 1, drop = FALSE],
   method = "liu",
-  model = "continuous", 
-  weight.beta = c(1, 25), 
+  model = "continuous",
+  weight.beta = c(1, 25),
   maf = variants_info[, "maf"]
 )
 ```
@@ -178,8 +178,8 @@ mist(
   G = genotypes,
   Z = variants_info[, 1, drop = FALSE],
   method = "liu",
-  model = "continuous", 
-  weight.beta = c(1, 25), 
+  model = "continuous",
+  weight.beta = c(1, 25),
   maf = variants_info[, "maf"]
 )
 ```
@@ -195,8 +195,8 @@ mist(
   G = genotypes[, get_same_effect],
   Z = variants_info[get_same_effect, 1, drop = FALSE],
   method = "liu",
-  model = "continuous", 
-  weight.beta = c(1, 25), 
+  model = "continuous",
+  weight.beta = c(1, 25),
   maf = variants_info[get_same_effect, "maf"]
 )
 ```
@@ -243,8 +243,8 @@ mist(
   G = genotypes,
   Z = variants_info[, 1, drop = FALSE],
   method = "liu",
-  model = "binary", 
-  weight.beta = c(1, 25), 
+  model = "binary",
+  weight.beta = c(1, 25),
   maf = variants_info[, "maf"]
 )
 ```
@@ -260,8 +260,8 @@ mist(
   G = genotypes[, get_same_effect],
   Z = variants_info[get_same_effect, 1, drop = FALSE],
   method = "liu",
-  model = "binary", 
-  weight.beta = c(1, 25), 
+  model = "binary",
+  weight.beta = c(1, 25),
   maf = variants_info[get_same_effect, "maf"]
 )
 ```
