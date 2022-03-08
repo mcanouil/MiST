@@ -1,3 +1,7 @@
+# MiSTr 1.0.2
+
+- Fix URLs in `DESCRIPTION`.
+
 # MiSTr 1.0.1
 
 ## Minor dependency changes
