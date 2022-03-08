@@ -165,7 +165,7 @@ print.mist <- function(x, ...) {
 #' @usage NULL
 #'
 #' @return data.frame
-mist_logit<- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL) {
+mist_logit <- function(y, X, G, Z, method = "liu", weight.beta = NULL, maf = NULL) {
   if (!is.vector(y, "numeric")) stop('[MiSTr] "y" must be a numeric vector.')
   if (!(is.matrix(X) & is.numeric(X))) stop('[MiSTr] "X", must be a numeric matrix.')
   if (!(is.matrix(G) & is.numeric(G))) stop('[MiSTr] "G", must be a numeric matrix.')
