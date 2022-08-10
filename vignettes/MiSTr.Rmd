@@ -32,7 +32,8 @@ Test for association between a set of SNPS/genes and continuous or binary outcom
 
 ## Installation
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
 # Install MiSTr from CRAN:
 install.packages("MiSTr")
 
