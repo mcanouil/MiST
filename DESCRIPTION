@@ -41,7 +41,8 @@ Imports:
     MASS,
     purrr (>= 0.3.3),
     rstudioapi (>= 0.10),
-    utils
+    utils,
+    broom
 Suggests: 
     covr (>= 3.3.2),
     knitr (>= 1.25),
