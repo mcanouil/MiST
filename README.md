@@ -9,10 +9,9 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GitHub
 tag](https://img.shields.io/github/tag/mcanouil/MiSTr.svg?label=latest%20tag)](https://github.com/mcanouil/MiSTr)
-[![R build
-status](https://github.com/mcanouil/MiSTr/workflows/R-CMD-check/badge.svg)](https://github.com/mcanouil/MiSTr/actions)
-[![Coverage Status
-(codecov)](https://codecov.io/gh/mcanouil/MiSTr/branch/master/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr)
+[![Codecov test
+coverage](https://codecov.io/gh/mcanouil/MiSTr/branch/main/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr?branch=main)
+[![R-CMD-check](https://github.com/mcanouil/MiSTr/workflows/R-CMD-check/badge.svg)](https://github.com/mcanouil/MiSTr/actions)
 <!-- badges: end -->
 
 Test for association between a set of SNPS/genes and continuous or
@@ -21,8 +20,8 @@ using (weighted) score statistics.
 
 **Note:**
 
-  - From: <https://cran.r-project.org/src/contrib/MiST_1.0.tar.gz>
-  - Reference: <https://doi.org/10.1002/gepi.21717>
+-   From: <https://cran.r-project.org/src/contrib/MiST_1.0.tar.gz>
+-   Reference: <https://doi.org/10.1002/gepi.21717>
 
 ## Installation
 
@@ -41,6 +40,9 @@ remotes::install_github("mcanouil/MiSTr")
 library(MiSTr)
 data(mist_data)
 attach(mist_data)
+#> The following objects are masked from mist_data (pos = 3):
+#> 
+#>     genotypes, phenotypes, variants_info
 ```
 
 ### Continuous Outcome
@@ -56,12 +58,15 @@ res <- mist(
 #> [MiSTr] Linear regression is ongoing ...
 str(res)
 #> List of 2
-#>  $ estimate  :'data.frame':  1 obs. of  5 variables:
-#>   ..$ SubClusters: chr "cluster1"
-#>   ..$ Pi_hat     : num 0.248
-#>   ..$ SE         : num 0.321
-#>   ..$ CI_2.5     : num -0.389
-#>   ..$ CI_97.5    : num 0.885
+#>  $ estimate  :'data.frame':  1 obs. of  8 variables:
+#>   ..$ SubClusters     : chr "1"
+#>   ..$ term.pi.hat     : chr "Mcluster1"
+#>   ..$ estimate.pi.hat : num 0.248
+#>   ..$ std.error.pi.hat: num 0.321
+#>   ..$ statistic.pi.hat: num 0.774
+#>   ..$ p.value.pi.hat  : num 0.441
+#>   ..$ conf.low.pi.hat : num -0.389
+#>   ..$ conf.high.pi.hat: num 0.885
 #>  $ statistics:'data.frame':  1 obs. of  5 variables:
 #>   ..$ S.pi           : num 0.601
 #>   ..$ p.value.S.pi   : num 0.438
@@ -70,23 +75,23 @@ str(res)
 #>   ..$ p.value.overall: num 0.0307
 #>  - attr(*, "class")= chr "mist"
 print(res)
-#>
+#> 
 #> MiSTr: Mixed effects Score Test
 #> -------------------------------
-#>
+#> 
 #> - (Raw) Estimates:
-#>
-#>   SubClusters Pi_hat    SE CI_2.5 CI_97.5
-#> 1    cluster1  0.248 0.321 -0.389   0.885
-#>
+#> 
+#>   SubClusters term.pi.hat estimate.pi.hat std.error.pi.hat statistic.pi.hat p.value.pi.hat conf.low.pi.hat conf.high.pi.hat
+#> 1           1   Mcluster1           0.248            0.321            0.774          0.441          -0.389            0.885
+#> 
 #> - Statistics:
-#>
-#>   + Overall effect:
+#> 
+#>   + Overall effect: 
 #>     * P-value = 0.0307
-#>   + PI (mean effect):
+#>   + PI (mean effect):  
 #>     * Score = 0.601
 #>     * P-value = 0.438
-#>   + TAU (heterogeneous effect):
+#>   + TAU (heterogeneous effect):  
 #>     * Score = 1006.125
 #>     * P-value = 0.0111
 ```
@@ -104,13 +109,15 @@ res <- mist(
 #> [MiSTr] Logistic regression is ongoing ...
 str(res)
 #> List of 2
-#>  $ estimate  :'data.frame':  1 obs. of  6 variables:
-#>   ..$ SubClusters: chr "cluster1"
-#>   ..$ Pi_hat     : num 1.27
-#>   ..$ SE         : num 0.344
-#>   ..$ CI_2.5     : num 0.66
-#>   ..$ CI_97.5    : num 2.02
-#>   ..$ OR         : num 3.58
+#>  $ estimate  :'data.frame':  1 obs. of  8 variables:
+#>   ..$ SubClusters     : chr "1"
+#>   ..$ term.pi.hat     : chr "GZ"
+#>   ..$ estimate.pi.hat : num 3.58
+#>   ..$ std.error.pi.hat: num 0.344
+#>   ..$ statistic.pi.hat: num 3.7
+#>   ..$ p.value.pi.hat  : num 0.000216
+#>   ..$ conf.low.pi.hat : num 1.94
+#>   ..$ conf.high.pi.hat: num 7.53
 #>  $ statistics:'data.frame':  1 obs. of  5 variables:
 #>   ..$ S.pi           : num 17.5
 #>   ..$ p.value.S.pi   : num 2.83e-05
@@ -119,23 +126,23 @@ str(res)
 #>   ..$ p.value.overall: num 6.54e-05
 #>  - attr(*, "class")= chr "mist"
 print(res)
-#>
+#> 
 #> MiSTr: Mixed effects Score Test
 #> -------------------------------
-#>
+#> 
 #> - (Raw) Estimates:
-#>
-#>   SubClusters Pi_hat    SE CI_2.5 CI_97.5    OR
-#> 1    cluster1  1.274 0.344   0.66   2.019 3.576
-#>
+#> 
+#>   SubClusters term.pi.hat estimate.pi.hat std.error.pi.hat statistic.pi.hat p.value.pi.hat conf.low.pi.hat conf.high.pi.hat
+#> 1           1          GZ           3.576            0.344              3.7              0           1.935            7.528
+#> 
 #> - Statistics:
-#>
-#>   + Overall effect:
+#> 
+#>   + Overall effect: 
 #>     * P-value = 6.54e-05
-#>   + PI (mean effect):
+#>   + PI (mean effect):  
 #>     * Score = 17.527
 #>     * P-value = 2.83e-05
-#>   + TAU (heterogeneous effect):
+#>   + TAU (heterogeneous effect):  
 #>     * Score = 5.4
 #>     * P-value = 0.175
 ```

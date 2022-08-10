@@ -38,6 +38,7 @@ Imports:
     CompQuadForm (>= 1.4.3),
     broom
 Suggests:
+    knitr,
     rmarkdown,
     testthat
 VignetteBuilder: 
