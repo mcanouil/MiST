@@ -1,3 +1,12 @@
+# MiSTr 1.0.4
+
+## Chores
+
+- In `DESCRIPTION`,
+  - chore: update email address.
+
+**Full Changelog**: <https://github.com/mcanouil/MiSTr/compare/v1.0.3...v1.0.4>
+
 # MiSTr 1.0.3
 
 - refactor: improves model output with `broom`.
