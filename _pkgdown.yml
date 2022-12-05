@@ -1,0 +1,10 @@
+template:
+  params:
+    bootswatch: darkly
+
+development:
+  mode: auto
+
+authors:
+  Mickaël Canouil:
+    href: https://mickael.canouil.fr

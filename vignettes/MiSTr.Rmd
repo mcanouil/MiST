@@ -1,0 +1,268 @@
+---
+title: 'MiSTr: *Mi*xed effects *S*core *T*est'
+author: "Jianping Sun, Yingye Zheng and Li Hsu"
+email: "mickael.canouil@cnrs.fr"
+date: '`r format(Sys.time(), "%d %B %Y")`'
+output:
+  rmarkdown::html_vignette:
+    number_sections: true
+    toc: true
+    toc_depth: 2
+    fig_width: 6.3
+    fig_height: 4.7
+vignette: >
+  %\VignetteIndexEntry{MiSTr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Test for association between a set of SNPS/genes and continuous or binary outcomes by including variant characteristic information and using (weighted) score statistics.
+
+**Note:**
+
+* From: https://cran.r-project.org/src/contrib/MiST_1.0.tar.gz
+* Reference: https://doi.org/10.1002/gepi.21717
+
+## Installation
+
+```{r}
+#| eval: false
+# Install MiSTr from CRAN:
+install.packages("MiSTr")
+
+# Or the the development version from GitHub:
+# install.packages("remotes")
+remotes::install_github("mcanouil/MiSTr")
+```
+
+## MiSTr in Action
+
+```{r}
+library(MiSTr)
+data(mist_data)
+attach(mist_data)
+```
+
+### Continuous Outcome
+
+#### With Heterogeneity (τ)
+
+```{r}
+mist(
+  y = phenotypes[, "y_tau"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous"
+)
+```
+
+#### With Heterogeneity (τ) "Removed"
+
+```{r}
+variants_info[, "effect"] # simulated effect
+get_same_effect <- names(which(variants_info[, "effect"] > 0))
+mist(
+  y = phenotypes[, "y_tau"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes[, get_same_effect],
+  Z = variants_info[get_same_effect, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous"
+)
+```
+
+#### With "Average" Effect (π)
+
+```{r}
+mist(
+  y = phenotypes[, "y_pi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous"
+)
+```
+
+#### With "Average" Effect (π) and Heterogeneity (τ)
+
+```{r}
+mist(
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous"
+)
+```
+
+#### With "Average" Effect (π) and With Heterogeneity (τ) "Removed"
+
+```{r}
+variants_info[, "effect"] # simulated effect
+get_same_effect <- names(which(variants_info[, "effect"] > 0))
+mist(
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes[, get_same_effect],
+  Z = variants_info[get_same_effect, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous"
+)
+```
+
+### Continuous Outcome with Weights
+
+#### With Heterogeneity (τ)
+
+```{r}
+mist(
+  y = phenotypes[, "y_tau"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous",
+  weight.beta = c(1, 25),
+  maf = variants_info[, "maf"]
+)
+```
+
+#### With Heterogeneity (τ) "Removed"
+
+```{r}
+variants_info[, "effect"] # simulated effect
+get_same_effect <- names(which(variants_info[, "effect"] > 0))
+mist(
+  y = phenotypes[, "y_tau"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes[, get_same_effect],
+  Z = variants_info[get_same_effect, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous",
+  weight.beta = c(1, 25),
+  maf = variants_info[get_same_effect, "maf"]
+)
+```
+
+#### With "Average" Effect (π)
+
+```{r}
+mist(
+  y = phenotypes[, "y_pi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous",
+  weight.beta = c(1, 25),
+  maf = variants_info[, "maf"]
+)
+```
+
+#### With "Average" Effect (π) and Heterogeneity (τ)
+
+```{r}
+mist(
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous",
+  weight.beta = c(1, 25),
+  maf = variants_info[, "maf"]
+)
+```
+
+#### With "Average" Effect (π) and With Heterogeneity (τ) "Removed"
+
+```{r}
+variants_info[, "effect"] # simulated effect
+get_same_effect <- names(which(variants_info[, "effect"] > 0))
+mist(
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes[, get_same_effect],
+  Z = variants_info[get_same_effect, 1, drop = FALSE],
+  method = "liu",
+  model = "continuous",
+  weight.beta = c(1, 25),
+  maf = variants_info[get_same_effect, "maf"]
+)
+```
+
+
+### Binary Outcome
+
+#### With Heterogeneity (τ)
+
+```{r}
+mist(
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "binary"
+)
+```
+
+#### With Heterogeneity (τ) "Removed"
+
+```{r}
+variants_info[, "effect"] # simulated effect
+get_same_effect <- names(which(variants_info[, "effect"] > 0))
+mist(
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes[, get_same_effect],
+  Z = variants_info[get_same_effect, 1, drop = FALSE],
+  method = "liu",
+  model = "binary"
+)
+```
+
+### Binary Outcome with Weights
+
+#### With Heterogeneity (τ)
+
+```{r}
+mist(
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE],
+  method = "liu",
+  model = "binary",
+  weight.beta = c(1, 25),
+  maf = variants_info[, "maf"]
+)
+```
+
+#### With Heterogeneity (τ) "Removed"
+
+```{r}
+variants_info[, "effect"] # simulated effect
+get_same_effect <- names(which(variants_info[, "effect"] > 0))
+mist(
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes[, get_same_effect],
+  Z = variants_info[get_same_effect, 1, drop = FALSE],
+  method = "liu",
+  model = "binary",
+  weight.beta = c(1, 25),
+  maf = variants_info[get_same_effect, "maf"]
+)
+```

@@ -1,0 +1,77 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(width = 140)
+```
+
+# *Mi*xed effects *S*core *T*est <img src="man/figures/mistr.png" align="right" width="120" />
+
+<!-- badges: start -->
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![GitHub tag](https://img.shields.io/github/tag/mcanouil/MiSTr.svg?label=latest tag)](https://github.com/mcanouil/MiSTr)
+[![Codecov test
+coverage](https://codecov.io/gh/mcanouil/MiSTr/branch/main/graph/badge.svg)](https://codecov.io/gh/mcanouil/MiSTr?branch=main)
+[![R-CMD-check](https://github.com/mcanouil/MiSTr/workflows/R-CMD-check/badge.svg)](https://github.com/mcanouil/MiSTr/actions)
+<!-- badges: end -->
+
+Test for association between a set of SNPS/genes and continuous or binary outcomes by including variant characteristic information and using (weighted) score statistics.
+
+**Note:**
+
+* From: https://cran.r-project.org/src/contrib/MiST_1.0.tar.gz
+* Reference: https://doi.org/10.1002/gepi.21717
+
+## Installation
+
+```{r}
+#| eval: false
+# Install MiSTr from CRAN:
+install.packages("MiSTr")
+
+# Or the the development version from GitHub:
+# install.packages("remotes")
+remotes::install_github("mcanouil/MiSTr")
+```
+
+
+## MiSTr in Action
+
+```{r}
+library(MiSTr)
+data(mist_data)
+attach(mist_data)
+```
+
+### Continuous Outcome
+
+```{r}
+res <- mist(
+  y = phenotypes[, "y_taupi"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
+)
+str(res)
+print(res)
+```
+
+### Binary Outcome
+
+```{r}
+res <- mist(
+  y = phenotypes[, "y_binary"],
+  X = phenotypes[, paste0("x_cov", 0:2)],
+  G = genotypes,
+  Z = variants_info[, 1, drop = FALSE]
+)
+str(res)
+print(res)
+```
